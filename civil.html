@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM</title>
+    <style>
+        body,html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form{
+            height:100%;
+            width:500px;
+            background-color: white;
+            padding:20px;
+            border: 2px  solid red;
+            border-radius: 10px;
+            margin-top: 10px;
+            font-size: 25px;
+            margin-bottom: 20px;
+           
+        }
+        label{
+            color: rgb(233, 77, 63);
+            font-weight: 600;
+        }
+        input{
+            
+            height:30px;
+
+        }
+        .form input[type="submit"] {
+            width: 100%; /* Make the submit button full width */
+            margin-top: 10px; /* Add some space between the input fields and the submit button */
+        }
+        #dropdown{
+            height:30px;
+            width: 200px;
+        }
+        #submit{
+            background-color: rgb(233, 77, 63);
+            color:white;
+            padding:10px;
+            font-weight: 700;
+            border-radius: 10px ;
+            font-size: 25px;
+            height: 50px;
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .form label {
+            margin-bottom: 5px;
+        }
+        .form input[type="number"] {
+            width: 200px; /* Adjust width as needed */
+        }
+        @media only screen and (max-width: 600px) {
+            .form{
+                height:100%;
+                width:300px;
+                background-color: white;
+                padding:20px;
+                border: 2px  solid red;
+                border-radius: 10px;
+               
+            }
+        }
+        @media only screen and (max-width: 900px) {
+            .form{
+                height:100%;
+                width:300px;
+                background-color: white;
+                padding:20px;
+                border: 2px  solid red;
+                border-radius: 10px;
+               
+            } 
+        }
+        @media only screen and (max-width: 400px) {
+            .form{
+                height:100%;
+                width:300px;
+                background-color: white;
+                padding:20px;
+                border: 2px  solid red;
+                border-radius: 10px;
+               
+    
+            }
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="container">
+        <h1 style="color: rgb(233, 77, 63);
+        font-weight: 600;">CIVIL</h1>
+    <form name="submit-to-google-sheet" class="form">
+        <label>Name    </label><select id="dropdown" name="name">
+            <option value="Mr. N Madhusoodhan Rao">Mr.N Madhusoodhan Rao</option>
+            <option value="Dr. Manjunath S">Dr. Manjunath S</option>
+           
+            <!-- Add more options as needed -->
+        </select><br>
+        <label for="dropdown">Choose Team:</label>
+        <select id="dropdown" name="team">
+            <option value="SMART APP ASSISTED COLORIMETRIC DETERMINATION OF IRON IN GROUND WATER : A CASE STUDY IN UDUPI DISTRICT, KARNATAKA">SMART APP ASSISTED COLORIMETRIC DETERMINATION OF IRON IN GROUND WATER : A CASE STUDY IN UDUPI DISTRICT, KARNATAKA</option>
+            <option value="FEASIBILITY STUDY ON COWCRETE: A COMPREHENSIVE APPROACH TO STUDY COW MANURE AS A PARTIAL REPLACEMENT TO CONCRETE FOR VEDIC CONSTRUCTION PRACTICES">FEASIBILITY STUDY ON COWCRETE: A COMPREHENSIVE APPROACH TO STUDY COW MANURE AS A PARTIAL REPLACEMENT TO CONCRETE FOR VEDIC CONSTRUCTION PRACTICES</option>
+            <option value="DEVELOPMENT OF ANDROID APP ON SCHEDULING PAYMENTS AND FINANCIAL MANAGEMENT IN CONSTRUCTION INDUSTRIES">STUDY ON PERFORMANCE OF CONCRETE FOR PARTIAL REPLACEMENT OF COARSE AGGREGATE USING E-WASTE
+
+            </option>
+             <option value="STUDY ON PERFORMANCE OF CONCRETE FOR PARTIAL REPLACEMENT OF COARSE AGGREGATE USING E-WASTE">DEVELOPMENT OF ANDROID APP ON SCHEDULING PAYMENTS AND FINANCIAL MANAGEMENT IN CONSTRUCTION INDUSTRIES</option>
+            <!-- Add more options as needed -->
+        </select><br>
+        <label for="innovation">Innovation</label>
+<input type="number" id="innovation" name="innovation" placeholder="Enter marks" required><br>
+<label for="Real Time 
+Applications">Real Time Applications</label>
+<input type="number" id="application" name="application" placeholder="Enter marks" required><br>
+<label for="Societal Impact">Societal Impact</label>
+<input type="number" id="presentation" name="Societal Impact" placeholder="Enter marks" required><br>
+<label for="Demo">Demo</label>
+<input type="number" id="presentation" name="Demo" placeholder="Enter marks" required><br>
+<label for="Presentation & Viva">Presentation & Viva</label>
+<input type="number" id="presentation" name="Presentation & Viva" placeholder="Enter marks" required><br>       
+        
+       
+        
+        <input type="submit" name="submit" id="submit">
+        <span id="success"></span>
+    </form>
+    </div>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxV-4hux0hE-PnQpqx3ZA2Ilo43FxQjKV917ksNKf3lhGFB5EejB5CpqctCqA_ujxOs/exec'
+        const form = document.forms['submit-to-google-sheet']
+      const success=document.getElementById("success");
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                success.innerHTML="data inserted successfully"
+                setTimeout(function(){
+                    success.innerHTML="";
+                },5000)
+                form.reset();
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+</body>
+</html>
